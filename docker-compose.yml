@@ -1,0 +1,50 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: metrictruth-postgres
+    environment:
+      POSTGRES_DB: metrictruth
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres_admin_pw
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./scripts/init_db.sql:/docker-entrypoint-initdb.d/01_init_db.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d metrictruth"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: metrictruth-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: metrictruth-api
+    environment:
+      APP_DATABASE_URL: postgresql+asyncpg://metrictruth_app:metrictruth_app_pw@postgres:5432/metrictruth
+      READONLY_DATABASE_URL: postgresql+asyncpg://metrictruth_reader:metrictruth_reader_pw@postgres:5432/metrictruth
+      REDIS_URL: redis://redis:6379/0
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+

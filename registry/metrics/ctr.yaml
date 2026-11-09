@@ -1,0 +1,35 @@
+metric_id: click_through_rate
+name: Click-Through Rate
+aliases:
+  - ctr
+  - click through rate
+  - click-through rate
+description: >
+  Percentage of ad impressions that resulted in a click across active campaigns.
+formula:
+  numerator: total_ad_clicks
+  denominator: total_ad_impressions
+  aggregation: percentage
+unit: PERCENT
+grain: daily
+attribution:
+  model: ad_platform_impression
+  lookback_days: 1
+time_dimension: report_date
+dimensions:
+  - campaign
+  - channel
+  - date
+sources:
+  - daily_campaign_performance
+  - campaigns
+exclusions:
+  - internal_test_campaigns
+driver_metrics: []
+freshness:
+  maximum_age_hours: 24
+timezone: America/New_York
+owner: marketing_analytics
+status: approved
+version: 1
+

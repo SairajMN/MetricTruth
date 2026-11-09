@@ -1,0 +1,36 @@
+metric_id: fully_loaded_customer_acquisition_cost
+name: Fully Loaded Customer Acquisition Cost
+aliases:
+  - fully loaded cac
+  - loaded cac
+  - fully loaded customer acquisition cost
+ambiguity_group: cac
+description: >
+  Total paid media expenditure plus marketing and sales operating overhead divided by total valid new customers.
+formula:
+  numerator: total_loaded_acquisition_spend
+  denominator: total_valid_new_customers
+  aggregation: ratio
+unit: USD
+grain: monthly
+attribution:
+  model: all_valid_acquisitions
+  lookback_days: 30
+time_dimension: acquired_at
+dimensions:
+  - date
+sources:
+  - daily_campaign_performance
+  - customer_acquisitions
+  - operating_expenses_monthly
+exclusions:
+  - internal_test_campaigns
+  - invalid_customer_records
+driver_metrics: []
+freshness:
+  maximum_age_hours: 24
+timezone: America/New_York
+owner: fp_and_a
+status: draft
+version: 1
+

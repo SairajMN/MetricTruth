@@ -1,0 +1,6 @@
+campaign_id,campaign_name,channel,campaign_status,created_at
+CMP_001,Search,SEARCH,ACTIVE,2026-01-15T09:00:00
+CMP_002,Social,SOCIAL,ACTIVE,2026-01-15T09:00:00
+CMP_003,Affiliate,AFFILIATE,ACTIVE,2026-02-01T09:00:00
+CMP_004,Internal Test - Sandbox,SEARCH,INTERNAL_TEST,2026-06-01T09:00:00
+CMP_005,Display - Retargeting Pilot,DISPLAY,ACTIVE,2026-08-15T09:00:00

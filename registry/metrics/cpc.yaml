@@ -1,0 +1,36 @@
+metric_id: cost_per_click
+name: Cost Per Click
+aliases:
+  - cpc
+  - cost per click
+  - average cpc
+  - paid cpc
+description: >
+  Average paid advertising expenditure per ad click across active campaigns.
+formula:
+  numerator: total_paid_media_spend
+  denominator: total_ad_clicks
+  aggregation: ratio
+unit: USD
+grain: daily
+attribution:
+  model: ad_platform_click
+  lookback_days: 1
+time_dimension: report_date
+dimensions:
+  - campaign
+  - channel
+  - date
+sources:
+  - daily_campaign_performance
+  - campaigns
+exclusions:
+  - internal_test_campaigns
+driver_metrics: []
+freshness:
+  maximum_age_hours: 24
+timezone: America/New_York
+owner: marketing_analytics
+status: approved
+version: 1
+

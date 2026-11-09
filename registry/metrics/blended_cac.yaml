@@ -1,0 +1,38 @@
+metric_id: blended_customer_acquisition_cost
+name: Blended Customer Acquisition Cost
+aliases:
+  - blended cac
+  - blended acquisition cost
+  - blended customer acquisition cost
+ambiguity_group: cac
+description: >
+  Total paid media expenditure divided by all valid new customers across both paid and organic/direct channels.
+formula:
+  numerator: total_paid_media_spend
+  denominator: total_valid_new_customers
+  aggregation: ratio
+unit: USD
+grain: monthly
+attribution:
+  model: all_valid_acquisitions
+  lookback_days: 30
+time_dimension: acquired_at
+dimensions:
+  - campaign
+  - channel
+  - date
+sources:
+  - daily_campaign_performance
+  - customer_acquisitions
+  - campaigns
+exclusions:
+  - internal_test_campaigns
+  - invalid_customer_records
+driver_metrics: []
+freshness:
+  maximum_age_hours: 24
+timezone: America/New_York
+owner: finance_analytics
+status: approved
+version: 1
+

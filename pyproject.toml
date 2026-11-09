@@ -1,0 +1,40 @@
+[project]
+name = "metrictruth"
+version = "0.1.0"
+description = "Certified-metric business intelligence platform with deterministic SQL compilation and independent result verification."
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "pydantic>=2.9.0",
+    "pydantic-settings>=2.6.0",
+    "sqlalchemy>=2.0.36",
+    "asyncpg>=0.30.0",
+    "aiosqlite>=0.20.0",
+    "greenlet>=3.1.1",
+    "sqlglot>=25.29.0",
+    "httpx>=0.27.2",
+    "pyyaml>=6.0.2",
+    "python-multipart>=0.0.17",
+    "redis>=5.2.0",
+    "opentelemetry-api>=1.28.0",
+    "opentelemetry-sdk>=1.28.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.3",
+    "pytest-asyncio>=0.24.0",
+    "ruff>=0.7.3",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+pythonpath = [".", "apps/api"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"

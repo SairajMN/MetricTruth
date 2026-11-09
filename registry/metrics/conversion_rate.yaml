@@ -1,0 +1,38 @@
+metric_id: customer_conversion_rate
+name: Customer Conversion Rate
+aliases:
+  - cvr
+  - conversion rate
+  - customer conversion rate
+  - click conversion rate
+description: >
+  Percentage of paid ad clicks that converted into valid attributed new customers.
+formula:
+  numerator: paid_attributed_new_customers
+  denominator: total_ad_clicks
+  aggregation: percentage
+unit: PERCENT
+grain: monthly
+attribution:
+  model: last_non_direct_paid_click
+  lookback_days: 7
+time_dimension: acquired_at
+dimensions:
+  - campaign
+  - channel
+  - date
+sources:
+  - daily_campaign_performance
+  - customer_acquisitions
+  - campaigns
+exclusions:
+  - internal_test_campaigns
+  - invalid_customer_records
+driver_metrics: []
+freshness:
+  maximum_age_hours: 24
+timezone: America/New_York
+owner: growth_analytics
+status: approved
+version: 1
+

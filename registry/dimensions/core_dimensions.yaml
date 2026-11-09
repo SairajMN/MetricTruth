@@ -1,0 +1,27 @@
+dimensions:
+  campaign:
+    dimension_id: campaign
+    label: Campaign Name
+    source_view: v_campaigns
+    column: campaign_name
+    join_key: campaign_id
+    allowed_values: null
+  channel:
+    dimension_id: channel
+    label: Acquisition Channel
+    source_view: v_campaigns
+    column: channel
+    join_key: campaign_id
+    allowed_values:
+      - SEARCH
+      - SOCIAL
+      - AFFILIATE
+      - DISPLAY
+  date:
+    dimension_id: date
+    label: Reporting Period
+    source_view: v_daily_campaign_performance
+    column: report_date
+    join_key: report_date
+    allowed_values: null
+

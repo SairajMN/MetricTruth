@@ -1,0 +1,38 @@
+metric_id: return_on_ad_spend
+name: Return on Ad Spend
+aliases:
+  - roas
+  - return on ad spend
+  - ad roas
+  - revenue per ad dollar
+description: >
+  First-order revenue from valid paid-attributed customers divided by total paid advertising expenditure.
+formula:
+  numerator: paid_attributed_revenue
+  denominator: total_paid_media_spend
+  aggregation: ratio
+unit: RATIO
+grain: monthly
+attribution:
+  model: last_non_direct_paid_click
+  lookback_days: 7
+time_dimension: acquired_at
+dimensions:
+  - campaign
+  - channel
+  - date
+sources:
+  - daily_campaign_performance
+  - customer_acquisitions
+  - campaigns
+exclusions:
+  - internal_test_campaigns
+  - invalid_customer_records
+driver_metrics: []
+freshness:
+  maximum_age_hours: 24
+timezone: America/New_York
+owner: revenue_analytics
+status: approved
+version: 1
+

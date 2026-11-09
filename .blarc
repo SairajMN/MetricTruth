@@ -1,0 +1,13 @@
+{
+  "$schema": "https://bla.tools/schemas/bla.config.v1.json",
+  "input": "./dist",
+  "intensity": "bankrupt",
+  "emitManifest": false,
+  "llmDirectives": false,
+  "honeySourceMaps": true,
+  "minDefenseScore": 90,
+  "weaveDecoys": false,
+  "selfSeal": false,
+  "sidecarEntangle": false,
+  "seed": "bla-cda0dd49743e8ccebf1bc99f4a87ac83"
+}

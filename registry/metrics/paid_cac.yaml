@@ -1,0 +1,40 @@
+metric_id: paid_customer_acquisition_cost
+name: Paid Customer Acquisition Cost
+aliases:
+  - paid cac
+  - paid acquisition cost
+  - paid customer acquisition cost
+ambiguity_group: cac
+description: >
+  Average paid advertising expenditure required to acquire one new customer attributed to paid channels.
+formula:
+  numerator: total_paid_media_spend
+  denominator: paid_attributed_new_customers
+  aggregation: ratio
+unit: USD
+grain: monthly
+attribution:
+  model: last_non_direct_paid_click
+  lookback_days: 7
+time_dimension: acquired_at
+dimensions:
+  - campaign
+  - channel
+  - date
+sources:
+  - daily_campaign_performance
+  - customer_acquisitions
+  - campaigns
+exclusions:
+  - internal_test_campaigns
+  - invalid_customer_records
+driver_metrics:
+  - cost_per_click
+  - customer_conversion_rate
+freshness:
+  maximum_age_hours: 24
+timezone: America/New_York
+owner: marketing_analytics
+status: approved
+version: 1
+
